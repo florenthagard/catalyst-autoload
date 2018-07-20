@@ -21,11 +21,14 @@ Object.defineProperty(String.prototype, "class", {
 
 		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')
 		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
-			let classLoad = require(process.env[context] + '/' + namespace);
-			console.log(classLoad)
-			if (classLoad.name && classLoad.name === filename){
-				return modules[context] = classLoad;
-			}	return classLoad;
+			try {
+				let classLoad = require(process.env[context] + '/' + namespace);
+				if (classLoad.name && classLoad.name === filename){
+					return modules[context] = classLoad;
+				}	return classLoad;
+			} catch(e) {
+				console.log(e);
+			}
 		}
 
 		return context + '::' + namespace;
