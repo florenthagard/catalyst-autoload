@@ -1,7 +1,8 @@
 const fs   		 = require('fs');
+const path   	 = require('path');
 let modules 	 = {};
 
-process.env.FWD  = __dirname;
+process.env.FWD  = path.normalize(__dirname+"/../");
 
 Object.defineProperty(String.prototype, "class", {
 	enumerable   : false,
