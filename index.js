@@ -21,7 +21,6 @@ Object.defineProperty(String.prototype, "class", {
 
 		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')
 		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
-			console.log(">>>" + process.env[context] + '/' + namespace);
 			let classLoad = require(process.env[context] + '/' + namespace);
 			console.log(classLoad)
 			if (classLoad.name && classLoad.name === filename){
@@ -33,5 +32,14 @@ Object.defineProperty(String.prototype, "class", {
 	}
 });
 
+Object.defineProperty(String.prototype, "global", {
+	enumerable   : false,
+	configurable : false,
+	get          : function(){
+		let context = this.valueOf();
+		let base    = path.basename(context);
+		return global[base] = context.class;
+	}
+});
 
 module.exports = String;
