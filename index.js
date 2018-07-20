@@ -9,14 +9,14 @@ Object.defineProperty(String.prototype, "class", {
 	configurable : false,
 	get          : function(){
 
-		let context = this.valueOf();
-		if (modules[context]){
-			return modules[context];
-		}	
-			context   = this.valueOf().split('::');
+		let context   = this.valueOf().split('::');
 		let namespace = context.pop();
 			context   = context.shift() || "FWD";
 		let filename  = namespace.split('/').pop();
+
+		if (modules[context + '::' + filename]){
+			return modules[context + '::' + filename];
+		}
 
 
 		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')
