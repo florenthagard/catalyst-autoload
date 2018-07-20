@@ -23,7 +23,7 @@ Object.defineProperty(String.prototype, "class", {
 		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
 			try {
 				let classLoad = require(process.env[context] + '/' + namespace);
-				console.log(classLoad);
+				console.log(classLoad,filename);
 				if (classLoad.name && classLoad.name === filename){
 					return modules[context] = classLoad;
 				}	return classLoad;
