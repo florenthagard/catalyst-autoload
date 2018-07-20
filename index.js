@@ -26,7 +26,7 @@ Object.defineProperty(String.prototype, "class", {
 			console.log(classLoad)
 			if (classLoad.name && classLoad.name === filename){
 				return modules[context] = classLoad;
-			}
+			}	return classLoad;
 		}
 
 		return context + '::' + namespace;
