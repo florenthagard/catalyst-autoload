@@ -27,7 +27,7 @@ Object.defineProperty(String.prototype, "class", {
 					return modules[context] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				console.log('======>',e);
+				console.log('======>', e);
 			}
 		}
 
