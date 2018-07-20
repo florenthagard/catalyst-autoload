@@ -18,7 +18,6 @@ Object.defineProperty(String.prototype, "class", {
 			return modules[context + '::' + filename];
 		}
 
-
 		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')
 		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
 			try {
@@ -28,11 +27,15 @@ Object.defineProperty(String.prototype, "class", {
 					return modules[context + '::' + filename] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				let className = /ReferenceError:(.*) is/gi.exec(e.stack)[1];
-				console.log(className,Object.keys(modules));
-				let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
-				console.log(paths);
-				console.log(modules);
+				let className = /ReferenceError:(.*) is/gi.exec(e.stack);
+				if (className){
+					console.log(className,Object.keys(modules));
+					let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
+					console.log(paths);
+					console.log(modules);
+				}else{
+					console.log(e.stack);
+				}
 			}
 		}
 
