@@ -10,7 +10,7 @@ Object.defineProperty(String.prototype, "class", {
 	get          : function(){
 
 		let context = this.valueOf();
-		if (!modules[context]){
+		if (modules[context]){
 			return modules[context];
 		}	
 			context   = this.valueOf().split('::');
