@@ -1,6 +1,7 @@
-process.env.FWD  = __dirname;
-
+const fs   		 = require('fs');
 let modules 	 = {};
+
+process.env.FWD  = __dirname;
 
 Object.defineProperty(String.prototype, "class", {
 	enumerable   : false,
