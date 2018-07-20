@@ -1,0 +1,19 @@
+{
+  "name": "catalyst-autoload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florenthagard/catalyst-autoload.git"
+  },
+  "author": "Florent Hagard",
+  "license": "GPL V3.0",
+  "bugs": {
+    "url": "https://github.com/florenthagard/catalyst-autoload/issues"
+  },
+  "homepage": "https://github.com/florenthagard/catalyst-autoload#readme"
+}
