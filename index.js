@@ -18,6 +18,8 @@ Object.defineProperty(String.prototype, "class", {
 			context   = context.shift() || "FWD";
 		let filename  = namespace.split('/').pop();
 
+		console.log(process.env[context] + '/' + namespace + '.js');
+
 		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')){
 			let classLoad = require(process.env[context] + '/' + namespace);
 			if (classLoad.name && classLoad.name === filename){
