@@ -28,6 +28,7 @@ Object.defineProperty(String.prototype, "class", {
 				}	return classLoad;
 			} catch(e) {
 				let className = /ReferenceError:(.*) is/gi.exec(e.stack)[1];
+				console.log(Object.keys(modules));
 				let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
 				console.log(paths);
 			}
