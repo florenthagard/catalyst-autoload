@@ -1,4 +1,6 @@
-let modules = {};
+process.env.FWD  = __dirname;
+
+let modules 	 = {};
 
 Object.defineProperty(String.prototype, "class", {
 	enumerable   : false,
