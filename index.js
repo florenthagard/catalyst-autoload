@@ -32,6 +32,7 @@ Object.defineProperty(String.prototype, "class", {
 				console.log(className,Object.keys(modules));
 				let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
 				console.log(paths);
+				console.log(modules);
 			}
 		}
 
