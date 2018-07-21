@@ -38,7 +38,7 @@ Object.defineProperty(String.prototype, "class", {
 				}
 			}
 		}else{
-			console.log(process.env[context] + '/' + namespace + '.js');
+			console.log(process.env[context] + '/' + namespace);
 		}
 
 		return context + '::' + namespace;
