@@ -43,6 +43,7 @@ Object.defineProperty(String.prototype, "class", {
 			console.log(process.env[context] + '/' + namespace);
 		}
 
+		console.log('hire')
 		return context + '::' + namespace;
 	}
 });
