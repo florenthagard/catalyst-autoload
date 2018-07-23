@@ -19,11 +19,7 @@ Object.defineProperty(String.prototype, "class", {
 		}
 
 		let pathname  = path.normalize(process.env[context] + '/' + namespace);
-
-		// /Users/Florent/Documents/labs.local/www/Combo/Catalyst/Core/Kernel/Patterns/Daemon.js
-		// /Users/Florent/Documents/labs.local/www/Combo/Catalyst/Core/Kernel/Patterns/Deamon
-		console.log( fs.existsSync(pathname + '.js'), pathname + '.js' )
-
+		
 		if (fs.existsSync(pathname + '.js')
 		||  fs.existsSync(pathname + '.json')){
 			try {
