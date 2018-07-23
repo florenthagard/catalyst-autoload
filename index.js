@@ -25,7 +25,7 @@ Object.defineProperty(String.prototype, "class", {
 			try {
 				let classLoad = require(pathname);
 				if (classLoad.name && classLoad.name === filename){
-					return modules[context + '::' + pathname] = classLoad;
+					return modules[context + '::' + namespace] = classLoad;
 				}	return classLoad;
 			} catch(e) {
 				let className = /ReferenceError: (.*) is/gi.exec(e.stack);
