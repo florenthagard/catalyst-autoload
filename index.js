@@ -22,13 +22,10 @@ Object.defineProperty(String.prototype, "class", {
 		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
 			try {
 				let classLoad = require(process.env[context] + '/' + namespace);
-				console.log('try')
-				console.log(classLoad,classLoad.name,filename,classLoad.name === filename);
 				if (classLoad.name && classLoad.name === filename){
 					return modules[context + '::' + filename] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				console.log('catch')
 				let className = /ReferenceError:(.*) is/gi.exec(e.stack);
 				if (className){
 					console.log(className,Object.keys(modules));
