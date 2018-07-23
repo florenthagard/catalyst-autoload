@@ -53,7 +53,7 @@ Object.defineProperty(String.prototype, "class", {
 
 				let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
 				if (inThisNameSpace){
-					console.log(inThisNameSpace.length)
+					console.log(inThisNameSpace,inThisNameSpace.length)
 					if(inThisNameSpace.length > 60){
 						return;
 					}
