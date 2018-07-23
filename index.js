@@ -31,6 +31,7 @@ Object.defineProperty(String.prototype, "class", {
 				return modules[context][namespace] = classLoad;
 			}	return classLoad;
 		} catch(e) {
+			console.log(e);
 			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 			if (ReferenceError){
 				ReferenceError[1].class;
@@ -52,6 +53,12 @@ Object.defineProperty(String.prototype, "class", {
 				}
 
 
+				//let inThisNameSpace = /\((.*):.*:.*/gi.exec(e.stack.split('\n')[6]);
+				//if (inThisNameSpace && inThisNameSpace[1] !== __filename){
+				//	inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
+				//
+				//	return inThisNameSpace.class;
+				//}
 			}
 		}
 
