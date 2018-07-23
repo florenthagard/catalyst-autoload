@@ -93,7 +93,7 @@ Object.defineProperty(Object.prototype, "global", {
 	configurable : false,
 	get          : function(){
 		if (!this.name || global[this.name]){
-			throw new Error('Cant register '+ this.name || this.constructor.name +' for a global access');
+			throw new Error('Cant register '+ (this.name || this.constructor.name) +' for a global access');
 		}	return global[this.name] = this;
 	}
 });
