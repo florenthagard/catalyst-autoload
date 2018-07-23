@@ -1,6 +1,11 @@
 const fs   		 = require('fs');
 const path   	 = require('path');
-let modules 	 = {};
+
+let modules 	 = {
+	FWD : {},
+	CWD : {},
+	MDL : {}
+};
 
 process.env.FWD  = path.normalize(__dirname+"/../../");
 
@@ -14,8 +19,8 @@ Object.defineProperty(String.prototype, "class", {
 			context   = context.shift() || "FWD";
 		let filename  = namespace.split('/').pop();
 
-		if (modules[context + '::' + filename]){
-			return modules[context + '::' + filename];
+		if (modules[context][filename]){
+			return modules[context][filename];
 		}
 
 		let pathname  = path.normalize(process.env[context] + '/' + namespace);
@@ -25,7 +30,7 @@ Object.defineProperty(String.prototype, "class", {
 			try {
 				let classLoad = require(pathname);
 				if (classLoad.name && classLoad.name === filename){
-					return modules[context + '::' + namespace] = classLoad;
+					return modules[context][namespace] = classLoad;
 				}	return classLoad;
 			} catch(e) {
 				console.log(e);
@@ -39,6 +44,14 @@ Object.defineProperty(String.prototype, "class", {
 
 		console.log(context + '::' + namespace);
 		return context + '::' + namespace;
+	}
+});
+
+Object.defineProperty(String.prototype, "module", {
+	enumerable   : false,
+	configurable : false,
+	get          : function(){
+		return require(this.valueOf());
 	}
 });
 
