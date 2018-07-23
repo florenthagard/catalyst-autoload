@@ -53,8 +53,7 @@ Object.defineProperty(String.prototype, "class", {
 						return basePathName.class
 					}
 
-					console.log('======>',e.stack.split('\n'));
-					let inThisNameSpace = /\((.*)\)/gi.exec(e.stack[6]);
+					let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
 					if (inThisNameSpace){
 						inThisNameSpace = path.dirname(inThisNameSpace[1]) + namespace;
 					}
