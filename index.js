@@ -55,6 +55,7 @@ Object.defineProperty(String.prototype, "class", {
 				if (inThisNameSpace){
 					console.log(inThisNameSpace,inThisNameSpace.length)
 					if(inThisNameSpace[1].length > 60){
+						console.log('===>end')
 						return;
 					}
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
