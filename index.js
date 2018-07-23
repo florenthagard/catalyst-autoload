@@ -25,49 +25,39 @@ Object.defineProperty(String.prototype, "class", {
 
 		let pathName  	 = path.normalize(process.env[context] + '/' + namespace);
 
-		//if (fs.existsSync(pathName + '.js')
-		//||  fs.existsSync(pathName + '.json')){
-			try {
-				let classLoad = require(pathName);
-				if (classLoad.name && classLoad.name === filename){
-					return modules[context][namespace] = classLoad;
-				}	return classLoad;
-			} catch(e) {
-				let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
-				if (ReferenceError){
-					ReferenceError[1].class;
-					return namespace.class;
+		try {
+			let classLoad = require(pathName);
+			if (classLoad.name && classLoad.name === filename){
+				return modules[context][namespace] = classLoad;
+			}	return classLoad;
+		} catch(e) {
+			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
+			if (ReferenceError){
+				ReferenceError[1].class;
+				return namespace.class;
+			}
+
+			let Error = /Error:.*'(.*)'/gi.exec(e.stack);
+			console.log(e);
+			if (Error && e.code === "MODULE_NOT_FOUND"){
+				let indexPathName = pathName +'/index';
+				let basePathName  = pathName +'/'+ path.basename(pathName);
+
+				if (fs.existsSync(indexPathName)){
+					return indexPathName.class
 				}
 
-				let Error = /Error:.*'(.*)'/gi.exec(e.stack);
-				console.log(e);
-				if (Error && e.code === "MODULE_NOT_FOUND"){
-					let indexPathName = pathName +'/index';
-					let basePathName  = pathName +'/'+ path.basename(pathName);
+				if (fs.existsSync(basePathName)){
+					return basePathName.class
+				}
 
-					if (fs.existsSync(indexPathName)){
-						return indexPathName.class
-					}
-
-					if (fs.existsSync(basePathName)){
-						return basePathName.class
-					}
-
-					let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
-					if (inThisNameSpace){
-						inThisNameSpace = path.dirname(inThisNameSpace[1]) + namespace;
-					}
-
-					console.log(inThisNameSpace);
-					//ModuleError[1].class;
-					//return namespace.class;
+				let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
+				if (inThisNameSpace){
+					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
+					return inThisNameSpace.class;
 				}
 			}
-		/*} else {
-			console.log("ca passe pas");
-
-			let pathToExploreStat 				= fs.lstatSync(dirname + '/' + pathToExplore);
-		}*/
+		}
 
 		console.log(context + '::' + namespace);
 		return context + '::' + namespace;
