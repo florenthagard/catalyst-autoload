@@ -54,11 +54,11 @@ Object.defineProperty(String.prototype, "class", {
 				let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
 				if (inThisNameSpace){
 					console.log(inThisNameSpace,inThisNameSpace.length)
-					if(inThisNameSpace.length > 60){
+					if(inThisNameSpace[1].length > 60){
 						return;
 					}
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
-					//return inThisNameSpace.class;
+					return inThisNameSpace.class;
 				}
 			}
 		}
