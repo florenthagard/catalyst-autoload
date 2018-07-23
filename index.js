@@ -53,7 +53,12 @@ Object.defineProperty(String.prototype, "class", {
 						return basePathName.class
 					}
 
-					console.log('nope');
+					let inThisNameSpace = /\((.*)\)/gi.exec(e.stack[6]);
+					if (inThisNameSpace){
+						inThisNameSpace = path.dirname(inThisNameSpace[1]) + namespace;
+					}
+
+					console.log(inThisNameSpace);
 					//ModuleError[1].class;
 					//return namespace.class;
 				}
