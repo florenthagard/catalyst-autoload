@@ -25,10 +25,10 @@ Object.defineProperty(String.prototype, "class", {
 			try {
 				let classLoad = require(pathname);
 				if (classLoad.name && classLoad.name === filename){
-					return modules[context + '::' + filename] = classLoad;
+					return modules[context + '::' + pathname] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				let className = /ReferenceError:(.*) is/gi.exec(e.stack);
+				let className = /ReferenceError: (.*) is/gi.exec(e.stack);
 				if (className){
 					console.log(className,Object.keys(modules));
 					let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
