@@ -34,7 +34,7 @@ Object.defineProperty(String.prototype, "class", {
 			//console.log(e);
 			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 			if (ReferenceError){
-				throw e;
+				//throw e;
 			}
 
 			let Error = /Error:.*'(.*)'/gi.exec(e.stack);
