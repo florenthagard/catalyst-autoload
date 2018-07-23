@@ -40,10 +40,10 @@ Object.defineProperty(String.prototype, "class", {
 				}
 			}
 		}else{
-			console.log(process.env[context] + '/' + namespace);
+			console.log('else',process.env[context] + '/' + namespace);
 		}
 
-		console.log('hire')
+		console.log(context + '::' + namespace);
 		return context + '::' + namespace;
 	}
 });
