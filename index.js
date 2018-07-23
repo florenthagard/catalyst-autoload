@@ -52,7 +52,7 @@ Object.defineProperty(String.prototype, "class", {
 						return basePathName.class
 					}
 
-					console.log('toujour pas')
+					console.log('nope');
 					//ModuleError[1].class;
 					//return namespace.class;
 				}
