@@ -54,7 +54,7 @@ Object.defineProperty(String.prototype, "class", {
 				let inThisNameSpace = /\((.*):/gi.exec(e.stack.split('\n')[6]);
 
 
-				if (inThisNameSpace && inThisNameSpace !== __filename){
+				if (inThisNameSpace && inThisNameSpace[1] !== __filename){
 					console.log(__filename,inThisNameSpace[1],inThisNameSpace.length);
 
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
