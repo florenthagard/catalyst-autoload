@@ -33,11 +33,11 @@ Object.defineProperty(String.prototype, "class", {
 					return modules[context][namespace] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				console.log(e);
+				console.log(e,modules);
 				let className = /ReferenceError: (.*) is/gi.exec(e.stack);
 				if (className){
 					className[1].class;
-					//return namespace.class;
+					return namespace.class;
 				}
 			}
 		}
@@ -51,7 +51,12 @@ Object.defineProperty(String.prototype, "module", {
 	enumerable   : false,
 	configurable : false,
 	get          : function(){
-		return require(this.valueOf());
+		let moduleName = this.valueOf();
+		if ( modules.MDL[moduleName] ){
+			return modules.MDL[moduleName]
+		}
+
+		return modules.MDL[moduleName] = require(moduleName);
 	}
 });
 
