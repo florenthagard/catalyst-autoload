@@ -51,7 +51,7 @@ Object.defineProperty(String.prototype, "class", {
 					return basePathName.class
 				}
 
-				let inThisNameSpace = /\((.*):/gi.exec(e.stack.split('\n')[6]);
+				let inThisNameSpace = /\((.*):.*:.*/gi.exec(e.stack.split('\n')[6]);
 
 
 				if (inThisNameSpace && inThisNameSpace[1] !== __filename){
