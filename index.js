@@ -24,32 +24,28 @@ Object.defineProperty(String.prototype, "class", {
 		}
 
 		let pathName  	 = path.normalize(process.env[context] + '/' + namespace);
-		let pathNameStat = fs.lstatSync(pathName);
 
-		if(!fs.existsSync(pathName)){
-			console.log(pathNameStat)
-		}
-
-		if (fs.existsSync(pathName + '.js')
-		||  fs.existsSync(pathName + '.json')){
+		//if (fs.existsSync(pathName + '.js')
+		//||  fs.existsSync(pathName + '.json')){
 			try {
 				let classLoad = require(pathName);
 				if (classLoad.name && classLoad.name === filename){
 					return modules[context][namespace] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				console.log(e,modules);
-				let className = /ReferenceError: (.*) is/gi.exec(e.stack);
-				if (className){
-					className[1].class;
+				console.log('==>',e);
+				let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
+				if (ReferenceError){
+					ReferenceError[1].class;
 					return namespace.class;
 				}
+
 			}
-		} else {
+		/*} else {
 			console.log("ca passe pas");
 
 			let pathToExploreStat 				= fs.lstatSync(dirname + '/' + pathToExplore);
-		}
+		}*/
 
 		console.log(context + '::' + namespace);
 		return context + '::' + namespace;
