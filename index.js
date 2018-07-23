@@ -52,7 +52,9 @@ Object.defineProperty(String.prototype, "class", {
 				}
 
 				let inThisNameSpace = /\((.*)\)/gi.exec(e.stack.split('\n')[6]);
-				if (inThisNameSpace){
+				
+				
+				if (inThisNameSpace && inThisNameSpace !== __filename){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
 					console.log(inThisNameSpace,inThisNameSpace.length)
 					if(inThisNameSpace.length > 70){
