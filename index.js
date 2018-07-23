@@ -22,7 +22,7 @@ Object.defineProperty(String.prototype, "class", {
 
 		// /Users/Florent/Documents/labs.local/www/Combo/Catalyst/Core/Kernel/Patterns/Daemon.js
 		// /Users/Florent/Documents/labs.local/www/Combo/Catalyst/Core/Kernel/Patterns/Deamon
-		console.log( fs.existsSync(pathname + '.js'), fs.existsSync(pathname + '.js' )
+		console.log( fs.existsSync(pathname + '.js'), pathname + '.js' )
 
 		if (fs.existsSync(pathname + '.js')
 		||  fs.existsSync(pathname + '.json')){
