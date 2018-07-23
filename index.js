@@ -33,15 +33,26 @@ Object.defineProperty(String.prototype, "class", {
 					return modules[context][namespace] = classLoad;
 				}	return classLoad;
 			} catch(e) {
-				console.log('==>',e);
 				let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 				if (ReferenceError){
 					ReferenceError[1].class;
 					return namespace.class;
 				}
 
-				let ModuleError = /Error:.*'(.*)'/gi.exec(e.stack);
-				if (ModuleError){
+				let Error = /Error:.*'(.*)'/gi.exec(e.stack);
+				if (Error && Error.code === "MODULE_NOT_FOUND"){
+					let indexPathName = pathName +'/index';
+					let basePathName  = pathName +'/'+ path.basename(pathName);
+
+					if (fs.existsSync(indexPathName)){
+						return indexPathName.class
+					}
+
+					if (fs.existsSync(basePathName)){
+						return basePathName.class
+					}
+
+					console.log('toujour pas')
 					//ModuleError[1].class;
 					//return namespace.class;
 				}
