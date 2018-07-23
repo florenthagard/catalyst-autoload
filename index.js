@@ -88,4 +88,12 @@ Object.defineProperty(String.prototype, "global", {
 	}
 });
 
-module.exports = String;
+Object.defineProperty(Object.prototype, "global", {
+	enumerable   : false,
+	configurable : false,
+	get          : function(){
+		if (!this.name || global[this.name]){
+			throw new Error('Cant register '+ this.name || this.constructor.name +' for a global access');
+		}	return global[this.name] = this;
+	}
+});
