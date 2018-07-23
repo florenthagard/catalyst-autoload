@@ -31,7 +31,6 @@ Object.defineProperty(String.prototype, "class", {
 				return modules[context][namespace] = classLoad;
 			}	return classLoad;
 		} catch(e) {
-			console.log('wtf',e);
 			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 			if (ReferenceError){
 				console.log(e);
