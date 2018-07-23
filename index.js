@@ -40,6 +40,11 @@ Object.defineProperty(String.prototype, "class", {
 					return namespace.class;
 				}
 
+				let ModuleError = /Error:.*'(.*)'/gi.exec(e.stack);
+				if (ModuleError){
+					//ModuleError[1].class;
+					//return namespace.class;
+				}
 			}
 		/*} else {
 			console.log("ca passe pas");
