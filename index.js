@@ -26,7 +26,9 @@ Object.defineProperty(String.prototype, "class", {
 		let pathName  	 = path.normalize(process.env[context] + '/' + namespace);
 		let pathNameStat = fs.lstatSync(pathName);
 
-		console.log(pathNameStat)
+		if(!fs.existsSync(pathName)){
+			console.log(pathNameStat)
+		}
 
 		if (fs.existsSync(pathName + '.js')
 		||  fs.existsSync(pathName + '.json')){
