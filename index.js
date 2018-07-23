@@ -18,10 +18,12 @@ Object.defineProperty(String.prototype, "class", {
 			return modules[context + '::' + filename];
 		}
 
-		if (fs.existsSync(process.env[context] + '/' + namespace + '.js')
-		||  fs.existsSync(process.env[context] + '/' + namespace + '.json')){
+		let pathname  = path.normalize(process.env[context] + '/' + namespace);
+
+		if (fs.existsSync(pathname + '.js')
+		||  fs.existsSync(pathname + '.json')){
 			try {
-				let classLoad = require(process.env[context] + '/' + namespace);
+				let classLoad = require(pathname);
 				if (classLoad.name && classLoad.name === filename){
 					return modules[context + '::' + filename] = classLoad;
 				}	return classLoad;
@@ -37,7 +39,7 @@ Object.defineProperty(String.prototype, "class", {
 				}
 			}
 		}else{
-			console.log('else',process.env[context] + '/' + namespace);
+			console.log('else',pathname);
 		}
 
 		console.log(context + '::' + namespace);
