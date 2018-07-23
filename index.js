@@ -27,11 +27,11 @@ Object.defineProperty(String.prototype, "class", {
 
 		try {
 			let classLoad = require(pathName);
-			console.log(classLoad);
 			if (classLoad.name && classLoad.name === filename){
 				return modules[context][namespace] = classLoad;
 			}	return classLoad;
 		} catch(e) {
+			console.log(namespace,e);
 			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 			if (ReferenceError){
 				console.log(e);
