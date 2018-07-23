@@ -38,7 +38,7 @@ Object.defineProperty(String.prototype, "class", {
 			}
 
 			let Error = /Error:.*'(.*)'/gi.exec(e.stack);
-			console.log(e);
+
 			if (Error && e.code === "MODULE_NOT_FOUND"){
 				let indexPathName = pathName +'/index';
 				let basePathName  = pathName +'/'+ path.basename(pathName);
