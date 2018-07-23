@@ -51,7 +51,7 @@ Object.defineProperty(String.prototype, "class", {
 				if (fs.existsSync(basePathName)){
 					return basePathName.class
 				}
-
+				console.log(process.env.FWD,process.env.FWD);
 				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[6]);
 				if (inThisNameSpace && inThisNameSpace[1] !== __filename){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
