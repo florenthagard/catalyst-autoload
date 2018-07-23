@@ -23,12 +23,15 @@ Object.defineProperty(String.prototype, "class", {
 			return modules[context][filename];
 		}
 
-		let pathname  = path.normalize(process.env[context] + '/' + namespace);
-		
-		if (fs.existsSync(pathname + '.js')
-		||  fs.existsSync(pathname + '.json')){
+		let pathName  	 = path.normalize(process.env[context] + '/' + namespace);
+		let pathNameStat = fs.lstatSync(pathName);
+
+		console.log(pathNameStat)
+
+		if (fs.existsSync(pathName + '.js')
+		||  fs.existsSync(pathName + '.json')){
 			try {
-				let classLoad = require(pathname);
+				let classLoad = require(pathName);
 				if (classLoad.name && classLoad.name === filename){
 					return modules[context][namespace] = classLoad;
 				}	return classLoad;
@@ -40,6 +43,10 @@ Object.defineProperty(String.prototype, "class", {
 					return namespace.class;
 				}
 			}
+		} else {
+			console.log("ca passe pas");
+
+			let pathToExploreStat 				= fs.lstatSync(dirname + '/' + pathToExplore);
 		}
 
 		console.log(context + '::' + namespace);
