@@ -30,12 +30,8 @@ Object.defineProperty(String.prototype, "class", {
 			} catch(e) {
 				let className = /ReferenceError: (.*) is/gi.exec(e.stack);
 				if (className){
-					console.log(className,Object.keys(modules));
-					let paths 	  = Object.keys(modules).filter( v => RegExp(className+'$').test(v) );
-					console.log(paths);
-					console.log(modules);
-				} else {
-					console.log(e.stack);
+					className.class;
+					return namespace.class;
 				}
 			}
 		}else{
