@@ -7,7 +7,7 @@ let modules 	 = {
 	MDL : {}
 };
 
-process.env.FWD  = path.normalize(__dirname+"/../../");
+process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
 
 Object.defineProperty(String.prototype, "class", {
 	enumerable   : false,
@@ -31,7 +31,6 @@ Object.defineProperty(String.prototype, "class", {
 				return modules[context][namespace] = classLoad;
 			}	return classLoad;
 		} catch(e) {
-			console.log(namespace,e);
 			let ReferenceError = /ReferenceError: (.*) is/gi.exec(e.stack);
 			if (ReferenceError){
 				console.log(e);
@@ -51,7 +50,7 @@ Object.defineProperty(String.prototype, "class", {
 				if (fs.existsSync(basePathName)){
 					return basePathName.class
 				}
-				console.log(process.env.FWD,process.env.FWD);
+				console.log(process.env.FWD);
 				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[6]);
 				if (inThisNameSpace && inThisNameSpace[1] !== __filename){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
