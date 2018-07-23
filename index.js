@@ -3,7 +3,7 @@ const path   	 = require('path');
 
 let modules 	 = {
 	FWD : {},
-	CWD : {},
+	PWD : {},
 	MDL : {}
 };
 
@@ -27,6 +27,7 @@ Object.defineProperty(String.prototype, "class", {
 
 		try {
 			let classLoad = require(pathName);
+			console.log(classLoad);
 			if (classLoad.name && classLoad.name === filename){
 				return modules[context][namespace] = classLoad;
 			}	return classLoad;
