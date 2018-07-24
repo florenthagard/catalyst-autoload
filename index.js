@@ -72,9 +72,7 @@ Object.defineProperty(String.prototype, "module", {
 		let moduleName = this.valueOf();
 		if ( modules.MDL[moduleName] ){
 			return modules.MDL[moduleName]
-		}
-
-		return modules.MDL[moduleName] = require(moduleName);
+		} 	return modules.MDL[moduleName] = require(moduleName);
 	}
 });
 
@@ -84,7 +82,10 @@ Object.defineProperty(String.prototype, "global", {
 	get          : function(){
 		let context = this.valueOf();
 		let base    = path.basename(context);
-		return global[base] = context.class;
+
+		if ( global[base] ){
+			return global[base];
+		} 	return global[base] = context.class;
 	}
 });
 
