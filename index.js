@@ -59,8 +59,6 @@ Object.defineProperty(String.prototype, "class", {
 				}
 			}
 		}
-
-		console.log(context + '::' + namespace);
 		return context + '::' + namespace;
 	}
 });
