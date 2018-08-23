@@ -1,7 +1,7 @@
-process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
 const fs   		 = require('fs');
 const path   	 = require('path');
-let modules 	 = {
+process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
+const modules 	 = {
 	FWD : {},
 	PWD : {},
 	MDL : {}
