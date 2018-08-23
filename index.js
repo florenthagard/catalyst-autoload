@@ -1,13 +1,11 @@
+process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
 const fs   		 = require('fs');
 const path   	 = require('path');
-
 let modules 	 = {
 	FWD : {},
 	PWD : {},
 	MDL : {}
 };
-
-process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
 
 Object.defineProperty(String.prototype, "class", {
 	enumerable   : false,
@@ -23,7 +21,7 @@ Object.defineProperty(String.prototype, "class", {
 			return modules[context][filename];
 		}
 
-		let pathName  	 = path.normalize(process.env[context] + '/' + namespace);
+		let pathName  = path.normalize(process.env[context] + '/' + namespace);
 
 		try {
 			let classLoad = require(pathName);
@@ -36,9 +34,7 @@ Object.defineProperty(String.prototype, "class", {
 				console.log(e);
 				process.exit();
 			}
-
 			let Error = /Error:.*'(.*)'/gi.exec(e.stack);
-
 			if (Error && e.code === "MODULE_NOT_FOUND"){
 				let indexPathName = pathName +'/index';
 				let basePathName  = pathName +'/'+ path.basename(pathName);
@@ -86,7 +82,7 @@ Object.defineProperty(String.prototype, "global", {
 		} 	return global[base] = context.class;
 	}
 });
-
+/*
 Object.defineProperty(Object.prototype, "global", {
 	enumerable   : false,
 	configurable : false,
@@ -96,3 +92,4 @@ Object.defineProperty(Object.prototype, "global", {
 		}	return global[this.name] = this;
 	}
 });
+*/
