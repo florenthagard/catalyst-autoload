@@ -82,7 +82,7 @@ Object.defineProperty(String.prototype, "global", {
 		} 	return global[base] = context.class;
 	}
 });
-/*
+
 Object.defineProperty(Object.prototype, "global", {
 	enumerable   : false,
 	configurable : false,
@@ -92,4 +92,3 @@ Object.defineProperty(Object.prototype, "global", {
 		}	return global[this.name] = this;
 	}
 });
-*/
