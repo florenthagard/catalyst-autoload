@@ -36,26 +36,27 @@ Object.defineProperty(String.prototype, "class", {
 			}
 			let Error = /Error:.*'(.*)'/gi.exec(e.stack);
 			if (Error && e.code === "MODULE_NOT_FOUND"){
-				let indexPathName = pathName +'/index';
-				let basePathName  = pathName +'/'+ path.basename(pathName);
+				let indexPathName = namespace +'/index';
+				let basePathName  = namespace +'/'+ path.basename(pathName);
 
-				if (fs.existsSync(indexPathName)){
+				if (fs.existsSync(process.env[context] +'/'+ indexPathName + '.js')){
 					return indexPathName.class
 				}
 
-				if (fs.existsSync(basePathName)){
+				if (fs.existsSync(process.env[context] +'/'+ basePathName + '.js')){
 					return basePathName.class
 				}
 
 				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[6]);
 				if (inThisNameSpace && !__filename.match(inThisNameSpace[1]+'$')){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
-				
+					
 					return inThisNameSpace.class;
 				}
 			}
 		}
-		return context + '::' + namespace;
+
+		return context + '::' + path.normalize(namespace);
 	}
 });
 
