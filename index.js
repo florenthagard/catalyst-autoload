@@ -22,7 +22,6 @@ Object.defineProperty(String.prototype, "class", {
 		}
 
 		let pathName  = path.normalize(process.env[context] + '/' + namespace);
-
 		try {
 			let classLoad = require(pathName);
 			if (classLoad.name && classLoad.name === filename){
@@ -47,7 +46,7 @@ Object.defineProperty(String.prototype, "class", {
 					return basePathName.class
 				}
 
-				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[6]);
+				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[9]);
 				if (inThisNameSpace && !__filename.match(inThisNameSpace[1]+'$')){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
 					
