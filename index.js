@@ -1,6 +1,6 @@
 const fs   		 = require('fs');
 const path   	 = require('path');
-process.env.FWD  = path.normalize(__dirname+"/../../").replace(/\/$/,'');
+process.env.FWD  = path.normalize( __dirname + "/../../" ).replace(/\/$/,'');
 global.modules 	 = {
 	FWD : {},
 	PWD : {},
@@ -14,7 +14,7 @@ Object.defineProperty(String.prototype, "class", {
 
 		let context   = this.valueOf().split('::');
 		let namespace = context.pop();
-			context   = context.shift() || "FWD";
+			context   = context.shift() || 'FWD';
 		let filename  = namespace.split('/').pop();
 
 		if (modules[context][filename]){
@@ -46,16 +46,20 @@ Object.defineProperty(String.prototype, "class", {
 					return basePathName.class
 				}
 
-				let inThisNameSpace = RegExp('\\((?:'+process.env.PWD+'|'+process.env.FWD+')(.*):.*:.*',"gi").exec(e.stack.split('\n')[9]);
+				let inThisNameSpace = RegExp('\\((?:' + process.env.PWD + '|' + process.env.FWD + ')(.*):.*:.*',"gi").exec(e.stack.split('\n')[9]);
 				if (inThisNameSpace && !__filename.match(inThisNameSpace[1]+'$')){
 					inThisNameSpace = path.dirname(inThisNameSpace[1]) + '/' +namespace;
 					
 					return inThisNameSpace.class;
 				}
+
+				if (!namespace.match(/::/gi)){
+					return ('PWD::' + path.normalize(namespace)).class
+				}
 			}
 		}
 
-		return context + '::' + path.normalize(namespace);
+		return namespace.replace(/(P|F)WD::/gi,'');
 	}
 });
 
